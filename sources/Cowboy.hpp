@@ -8,7 +8,7 @@ namespace ariel
     class Cowboy : public Character
     {
     private:
-        /* data */
+        int bullets;
     public:
         Cowboy(string name, Point coordinate);
         void shoot(Character* enemy);

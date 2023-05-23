@@ -7,9 +7,8 @@ namespace ariel
     class Ninja:public Character
     {
     private:
-        /* data */
     public:
-        Ninja(string name,Point coordinate);
+        Ninja(int hitpoints,string name,Point coordinate);
         virtual void move(Character* enemy);
         void slash(Character* enemy);
     };

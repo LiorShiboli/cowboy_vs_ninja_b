@@ -7,7 +7,11 @@ namespace ariel
     class Character
     {
     private:
-        /* data */
+        string name;
+        int hitpoints;
+        Point location;
+    protected:
+        void setLocation(Point);
     public:
         Character(int hitPoints,string name,Point coordinate);
         bool isAlive();
