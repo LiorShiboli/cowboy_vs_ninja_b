@@ -12,10 +12,11 @@ namespace ariel
         Character(int hitPoints,string name,Point coordinate);
         bool isAlive();
         virtual void hit(int damage);
-        string get_name();
-        Point get_location();
+        string getName();
+        Point getLocation();
         virtual string print();
         int get_HP();
+        double distance(Character*);
     };
     
 } // namespace ariel

@@ -8,16 +8,18 @@ namespace ariel
     class Point
     {
     private:
-        /* data */
+        double x_pos;
+        double y_pos;
+
     public:
-        Point(double x, double y);
+        Point(double, double );
         double get_y();
         double get_x();
         void set_y(double);
         void set_x(double);
         double distance(Point other);
         std::string print();
-        static Point moveTorwards(Point from, Point torwards, double distance);
+        static Point moveTowards(Point from, Point torwards, double distance);
     };
 
  }// namespace ariel
