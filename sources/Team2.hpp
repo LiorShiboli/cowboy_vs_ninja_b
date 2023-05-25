@@ -9,6 +9,7 @@ namespace ariel
         Team2(Character* );
         virtual void attack(Team*);
         virtual string print();
+        virtual int stillAlive();
     };
     
 }

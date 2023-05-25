@@ -12,7 +12,8 @@ namespace ariel
     private:
        int size;
        Character* teamLeader;
-       vector<Character*> characters;
+       vector<Cowboy*> shooters;
+       vector<Ninja*> slashers;
     protected:
     vector<Character*> getMembers();
     Character* getLeader();

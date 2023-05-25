@@ -8,13 +8,29 @@ namespace ariel
         this->add(leader);
     }
     Team::~Team(){
-        for (Character* teammate : characters)
+        for (Character* teammate : slashers)
+        {
+            free(teammate);
+        }
+         for (Character* teammate : shooters)
         {
             free(teammate);
         }
         
     }
-    vector<Character*> Team::getMembers(){return this->characters;}
+    vector<Character*> Team::getMembers(){
+        vector<Character*> members;
+        for (Character* teammate : slashers)
+        {
+            members.push_back(teammate);
+        }
+        for (Character* teammate : shooters)
+        {
+            members.push_back(teammate);
+        }
+        
+        return members;
+        }
     Character* Team::getLeader(){ return teamLeader;}
     void Team::switchLeader()
     {
@@ -31,17 +47,31 @@ namespace ariel
         }
         this->size++;
         teammate->addToTeam();
-        characters.push_back(teammate);
+        if (dynamic_cast<Cowboy*>(teammate)!=nullptr)
+        {
+            shooters.push_back(dynamic_cast<Cowboy*>(teammate));
+        }
+        if (dynamic_cast<Ninja*>(teammate)!=nullptr)
+        {
+            slashers.push_back(dynamic_cast<Ninja*>(teammate));
+        } 
         
     }
     int  Team::stillAlive(){
         int counter =0;
-        for (Character* teammate : characters){
+         for (Character* teammate : slashers)
+        {
             if (teammate->isAlive())
             {
                 counter++;
             }
-            
+        }
+        for (Character* teammate : shooters)
+        {
+            if (teammate->isAlive())
+            {
+                counter++;
+            }
         }
         return counter;
     }
@@ -69,14 +99,10 @@ namespace ariel
         //cover cowboys
       
         
-        for (Character* attacker :this->characters)
+        for (Cowboy* shooter :this->shooters)
         {
-            if (attacker->isAlive())
+            if (shooter->isAlive())
             {
-                if (dynamic_cast<Cowboy*>(attacker)!=nullptr)
-                { 
-                    
-                    Cowboy* shooter = dynamic_cast<Cowboy*>(attacker);
                     
                     if (target!=nullptr&&!target->isAlive())
                     {
@@ -90,17 +116,13 @@ namespace ariel
                     {
                         shooter->shoot(target);
                     }
-                } 
             }
         }
         //go through ninjas
-        for (Character* attacker :this->characters)
+        for (Ninja* slasher :this->slashers)
         {
-            if (attacker->isAlive())
+            if (slasher->isAlive())
             {
-                if (dynamic_cast<Ninja*>(attacker)!=nullptr)
-                { 
-                    Ninja* slasher = dynamic_cast<Ninja*>(attacker);
                 
                     if (target!=nullptr&&!target->isAlive())
                     {
@@ -116,7 +138,6 @@ namespace ariel
                             slasher->slash(target);}
                         
                     }
-                }
             }  
         }
         
@@ -125,23 +146,46 @@ namespace ariel
         
         Character* target = nullptr;
         double minDistance = std::numeric_limits<double>::max();
-        for (Character* other: otherTeam->getMembers())
+        for (Character* attacker :otherTeam->getMembers())
         {
-            if (other->isAlive()&&other->distance(this->teamLeader)<minDistance )
-            {
-                minDistance = other->distance(this->teamLeader);
-                target = other;
-            }
+                if (dynamic_cast<Cowboy*>(attacker)!=nullptr)
+                {
+                    Cowboy* other = dynamic_cast<Cowboy*>(attacker);
+                    if (other->isAlive()&&other->distance(this->teamLeader)<minDistance )
+                    {
+                        minDistance = other->distance(this->teamLeader);
+                        target = other;
+                    }
+                } 
             
+        }
+        //go through ninjas
+        for (Character* attacker :otherTeam->getMembers())
+        {
+             if (dynamic_cast<Ninja*>(attacker)!=nullptr)
+                {
+                    Ninja* other = dynamic_cast<Ninja*>(attacker);
+                    if (other->isAlive()&&other->distance(this->teamLeader)<minDistance )
+                    {
+                        minDistance = other->distance(this->teamLeader);
+                        target = other;
+                    }
+                }   
         }
         return target;
         
     }
     string  Team::print(){
         string print ="";
-         for (Character* teammate : characters){
-            print+= teammate->print();
+        for (Character* teammate : slashers)
+        {
+            print+=teammate->print();
         }
+        for (Character* teammate : shooters)
+        {
+            print+=teammate->print();
+        }
+        
         return print;
          
     }

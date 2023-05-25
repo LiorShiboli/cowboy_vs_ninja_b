@@ -85,4 +85,17 @@ namespace ariel
         return print;
          
     }
+    int Team2::stillAlive(){
+        int counter=0;
+        for (Character* teammate: this->getMembers())
+        {
+            if (teammate->isAlive())
+            {
+                 counter++;
+            }
+            
+           
+        }
+        return counter;
+    }
 } // namespace ariel
