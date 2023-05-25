@@ -10,9 +10,12 @@ namespace ariel
         string name;
         int hitpoints;
         Point location;
+        bool isMember;
     protected:
         void setLocation(Point);
     public:
+        void addToTeam();
+        bool isInTeam();
         Character(int hitPoints,string name,Point coordinate);
         bool isAlive();
         virtual void hit(int damage);

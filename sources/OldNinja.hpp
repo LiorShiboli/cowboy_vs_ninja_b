@@ -9,6 +9,5 @@ namespace ariel{
     /* data */
     public:
         OldNinja( string name,Point coordinate);
-        void move(Character*);
     };
 }

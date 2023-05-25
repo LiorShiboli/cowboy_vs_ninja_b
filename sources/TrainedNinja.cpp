@@ -1,8 +1,5 @@
 #include "TrainedNinja.hpp"
 namespace ariel
 {
-    TrainedNinja::TrainedNinja( string name,Point coordinate):Ninja(120,name,coordinate){}
-    void TrainedNinja::move(Character* enemy){
-        this->setLocation(Point::moveTowards(this->getLocation(),enemy->getLocation(),12));
-    }
+    TrainedNinja::TrainedNinja( string name,Point coordinate):Ninja(12,120,name,coordinate){}
 } // namespace ariel

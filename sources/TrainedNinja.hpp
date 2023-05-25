@@ -10,7 +10,6 @@ namespace ariel
         /* data */
     public:
         TrainedNinja( string name,Point coordinate);
-        void move(Character*);
     };
     
 } // namespace ariel

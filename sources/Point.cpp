@@ -22,5 +22,5 @@ namespace ariel
                 double currentDistance = (std::sqrt(delta_x*delta_x+delta_y*delta_y));
                 delta_x = delta_x/currentDistance;
                 delta_y = delta_y/currentDistance;
-                return Point(from.get_x()+delta_x*distance,from.get_y()+delta_y*distance);}
+                return Point(from.get_x()+delta_x*std::min(distance,currentDistance),from.get_y()+delta_y*std::min(distance,currentDistance));}
 } // namespace ariel
