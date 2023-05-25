@@ -13,6 +13,7 @@ namespace ariel
         virtual void move(Character* enemy);
         void slash(Character* enemy);
         string print();
+        int getSpeed();
     };
     
 } // namespace ariel

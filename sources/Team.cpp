@@ -18,6 +18,8 @@ namespace ariel
         }
         
     }
+    vector<Cowboy*> Team::getShooters(){return shooters;}
+    vector<Ninja*> Team::getSlashers(){return slashers;}
     vector<Character*> Team::getMembers(){
         vector<Character*> members;
         for (Character* teammate : slashers)

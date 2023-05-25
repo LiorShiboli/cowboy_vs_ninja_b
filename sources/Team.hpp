@@ -15,10 +15,13 @@ namespace ariel
        vector<Cowboy*> shooters;
        vector<Ninja*> slashers;
     protected:
-    vector<Character*> getMembers();
+    vector<Cowboy*> getShooters();
+    vector<Ninja*> getSlashers();
+    
     Character* getLeader();
     void switchLeader();
     public:
+        vector<Character*> getMembers();
         Team(Character* );
         ~Team();
         virtual void add(Character*);
